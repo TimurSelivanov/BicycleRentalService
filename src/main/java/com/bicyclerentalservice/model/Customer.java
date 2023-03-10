@@ -1,4 +1,4 @@
-package model;
+package com.bicyclerentalservice.model;
 
 import java.util.List;
 

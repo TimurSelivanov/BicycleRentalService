@@ -1,4 +1,4 @@
-package model;
+package com.bicyclerentalservice.model;
 
 public class Bicycle {
     private String brandName;
