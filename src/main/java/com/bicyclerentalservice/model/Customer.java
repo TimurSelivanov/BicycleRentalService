@@ -1,11 +1,17 @@
 package com.bicyclerentalservice.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+
 import java.util.List;
 
 public class Customer {
+    @NotEmpty(message = "Name shouldn`t be empty")
     private String name;
+    @NotEmpty(message = "Document number shouldn`t be empty")
     private int documentNumber;
     private int phoneNumber;
+    @Email(message = "Email should be valid")
     private String email;
     private List<Bicycle> listOfBicycles;
 

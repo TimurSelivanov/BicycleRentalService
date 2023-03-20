@@ -1,8 +1,13 @@
 package com.bicyclerentalservice.model;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class Bicycle {
+    @NotEmpty(message = "Brand name shouldn`t be empty")
     private String brandName;
+    @NotEmpty(message = "Model shouldn`t be empty")
     private String model;
+    @NotEmpty(message = "Serial number shouldn`t be empty")
     private int serialNumber;
     private Customer customer;
 
