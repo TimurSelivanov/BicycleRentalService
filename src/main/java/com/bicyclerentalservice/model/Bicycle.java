@@ -3,13 +3,14 @@ package com.bicyclerentalservice.model;
 import jakarta.validation.constraints.NotEmpty;
 
 public class Bicycle {
+
+    private int id;
     @NotEmpty(message = "Brand name shouldn`t be empty")
     private String brandName;
     @NotEmpty(message = "Model shouldn`t be empty")
     private String model;
     @NotEmpty(message = "Serial number shouldn`t be empty")
     private int serialNumber;
-    private Customer customer;
 
     public Bicycle() {
 
@@ -19,6 +20,14 @@ public class Bicycle {
         this.brandName = brandName;
         this.model = model;
         this.serialNumber = serialNumber;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getBrandName() {
@@ -43,13 +52,5 @@ public class Bicycle {
 
     public void setSerialNumber(int serialNumber) {
         this.serialNumber = serialNumber;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 }

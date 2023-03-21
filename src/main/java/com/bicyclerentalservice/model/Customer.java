@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotEmpty;
 import java.util.List;
 
 public class Customer {
+
+    private int id;
     @NotEmpty(message = "Name shouldn`t be empty")
     private String name;
     @NotEmpty(message = "Document number shouldn`t be empty")
@@ -13,8 +15,6 @@ public class Customer {
     private int phoneNumber;
     @Email(message = "Email should be valid")
     private String email;
-    private List<Bicycle> listOfBicycles;
-
 
     public Customer() {
 
@@ -25,6 +25,14 @@ public class Customer {
         this.documentNumber = documentNumber;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -57,13 +65,5 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<Bicycle> getListOfBicycles() {
-        return listOfBicycles;
-    }
-
-    public void setListOfBicycles(List<Bicycle> listOfBicycles) {
-        this.listOfBicycles = listOfBicycles;
     }
 }
