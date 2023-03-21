@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <title>Customer list</title>
 </head>
-<body>
+    <body>
+        <div th:each="customer : ${customers}">
+            <a th:href="@{/customers/{id}(id=${customer.getId()})}"
+               th:text="${customer.getName() + ', '
+               + customer.getDocumentNumber() + ', '
+               + customer.getPhoneNumber() + ', '
+               + customer.getEmail()}">customer</a>
+        </div>
 
-</body>
+        <br/>
+        <hr/>
+
+        <a href="/bicycles/new">Add new customer</a>
+    </body>
 </html>
