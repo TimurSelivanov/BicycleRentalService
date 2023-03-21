@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <title>Bicycle list</title>
 </head>
-<body>
+    <body>
+        <div th:each="bicycle : ${bicycles}">
+            <a th:href="@{/bicycles/{id}(id=${bicycle.getId()})}"
+               th:text="${bicycle.getBrandName() + ', ' + bicycle.getModel() + ', ' + bicycle.getSerialNumber()}">bicycle</a>
+        </div>
 
-</body>
+        <br/>
+        <hr/>
+
+        <a href="/bicycles/new">Add new bike</a>
+    </body>
 </html>

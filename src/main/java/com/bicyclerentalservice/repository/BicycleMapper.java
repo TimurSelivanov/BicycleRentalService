@@ -13,8 +13,8 @@ public class BicycleMapper implements RowMapper<Bicycle> {
 
         bicycle.setId(resultSet.getInt("id"));
         bicycle.setBrandName(resultSet.getString("brand_name"));
-        bicycle.setBrandName(resultSet.getString("model"));
-        bicycle.setId(resultSet.getInt("serial_number"));
+        bicycle.setModel(resultSet.getString("model"));
+        bicycle.setSerialNumber(resultSet.getInt("serial_number"));
         return bicycle;
     }
 }
