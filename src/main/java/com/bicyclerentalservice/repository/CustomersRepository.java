@@ -1,11 +1,13 @@
 package com.bicyclerentalservice.repository;
 
+import com.bicyclerentalservice.model.Bicycle;
 import com.bicyclerentalservice.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class CustomersRepository {
@@ -41,4 +43,14 @@ public class CustomersRepository {
         jdbcTemplate.update("DELETE FROM Customer WHERE id=?", id);
     }
 
+    //getting customer by its phone number and checking that it is unique
+    public Optional<Customer> getCustomerByPhoneNumber(int phoneNumber) {
+        return jdbcTemplate.query("SELECT * FROM Customer WHERE phone_number=?", new Object[]{phoneNumber},
+                new CustomerMapper()).stream().findAny();
+    }
+
+    //getting all bikes taken by customer
+    public List<Bicycle> getBicyclesByCustomerId(int id) {
+        return jdbcTemplate.query("SELECT * FROM Bicycle WHERE customer_id=?", new Object[]{id}, new BicycleMapper());
+    }
 }
