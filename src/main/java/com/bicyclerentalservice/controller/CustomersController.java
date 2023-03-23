@@ -1,8 +1,8 @@
 package com.bicyclerentalservice.controller;
 
 import com.bicyclerentalservice.model.Customer;
-import com.bicyclerentalservice.repository.BicyclesRepository;
 import com.bicyclerentalservice.repository.CustomersRepository;
+import com.bicyclerentalservice.util.CustomerValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/customers")
 public class CustomersController {
 
-    private final BicyclesRepository bicycleRepository;
     private final CustomersRepository customerRepository;
+    private final CustomerValidator customerValidator;
 
     @Autowired
-    public CustomersController(BicyclesRepository bicycleRepository, CustomersRepository customerRepository) {
-        this.bicycleRepository = bicycleRepository;
+    public CustomersController(CustomersRepository customerRepository, CustomerValidator customerValidator) {
         this.customerRepository = customerRepository;
+        this.customerValidator = customerValidator;
     }
 
     @GetMapping()
@@ -43,7 +43,8 @@ public class CustomersController {
 
     @PostMapping()
     public String create(@ModelAttribute("customer") @Valid Customer customer, BindingResult bindingResult) {
-        //TODO customer unique validation
+        customerValidator.validate(customer, bindingResult);
+
         if(bindingResult.hasErrors())
             return "customers/new";
 
