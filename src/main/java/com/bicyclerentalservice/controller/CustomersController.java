@@ -37,7 +37,7 @@ public class CustomersController {
     }
 
     @GetMapping("/new")
-    public String newCustomer(@ModelAttribute("customer")Customer customer) {
+    public String newCustomer(@ModelAttribute("customer") Customer customer) {
         return "customers/new";
     }
 
@@ -45,7 +45,7 @@ public class CustomersController {
     public String create(@ModelAttribute("customer") @Valid Customer customer, BindingResult bindingResult) {
         customerValidator.validate(customer, bindingResult);
 
-        if(bindingResult.hasErrors())
+        if (bindingResult.hasErrors())
             return "customers/new";
 
         customerRepository.save(customer);
@@ -61,7 +61,7 @@ public class CustomersController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("customer") @Valid Customer customer, BindingResult bindingResult,
                          @PathVariable("id") int id) {
-        if(bindingResult.hasErrors())
+        if (bindingResult.hasErrors())
             return "customers/update";
 
         customerRepository.update(id, customer);

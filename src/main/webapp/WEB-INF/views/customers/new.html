@@ -2,9 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add new customer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>New person</title>
 </head>
 <body>
+
+<form th:method="POST" th:action="@{/customers}" th:object="${customer}">
+    <label for="name">Enter name </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <br/>
+    <label for="documentNumber">Enter document number </label>
+    <input type="text" th:field="*{documentNumber}" id="documentNumber"/>
+    <div style="color:red" th:if="${#fields.hasErrors('documentNumber')}" th:errors="*{documentNumber}">Document number Error</div>
+    <br/>
+    <label for="phoneNumber">Enter phone number </label>
+    <input type="text" th:field="*{phoneNumber}" id="phoneNumber"/>
+    <div style="color:red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Phone number Error</div>
+    <br/>
+    <label for="email">Enter email </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+    <br/>
+    <input type="submit" value="Add"/>
+</form>
 
 </body>
 </html>
