@@ -25,4 +25,20 @@ public class CustomersRepository {
         return jdbcTemplate.query("SELECT * FROM Customer WHERE id=?", new Object[]{id}, new CustomerMapper())
                 .stream().findAny().orElse(null);
     }
+
+    public void save(Customer customer) {
+        jdbcTemplate.update("INSERT INTO Customer(name, document_number, phone_number, email) VALUES(?, ?, ?, ?)",
+                customer.getName(), customer.getDocumentNumber(), customer.getPhoneNumber(), customer.getEmail());
+    }
+
+    public void update(int id, Customer updatedCustomer) {
+        jdbcTemplate.update("UPDATE Customer SET name=?, document_number=?, phone_number=?, email=? WHERE id=?",
+                updatedCustomer.getName(), updatedCustomer.getDocumentNumber(), updatedCustomer.getPhoneNumber(),
+                updatedCustomer.getEmail(), id);
+    }
+
+    public void delete(int id) {
+        jdbcTemplate.update("DELETE FROM Customer WHERE id=?", id);
+    }
+
 }
