@@ -5,6 +5,37 @@
     <title>Bike details</title>
 </head>
 <body>
+<p th:text="${bicycle.getBrandName() + ', ' + bicycle.getModel() + ', ' + bicycle.getSerialNumber()}">VALUE</p>
+
+<div th:if="${customer}">
+    <span>Bike has been taken by </span> <span th:text="${customer.getFullName()}">Customer name</span>
+
+    <form th:method="PATCH" th:action="@{/bicycles/{id}/release(id=${bicycle.getId()})}">
+        <input type="submit" value="Return bicycle"/>
+    </form>
+</div>
+
+<div th:if="${customers}">
+    <span>This bicycle is free. It can be rented out to somebody</span>
+    <form th:method="PATCH" th:action="@{/bicycles/{id}/assign(id=${book.getId()})}">
+        <label for="customer">Choose customer</label>
+        <select th:object="${customer}" th:field="*{id}" id="customer">
+            <option th:each="customer : ${customer}" th:value="${customer.getId()}" th:text="${customer.getName}">
+            </option>
+        </select>
+        <input type="submit" value="Rent"/>
+    </form>
+</div>
+
+<hr/>
+
+<form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">
+    <input type="submit" value="Edit"/>
+</form>
+
+<form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
 
 </body>
 </html>

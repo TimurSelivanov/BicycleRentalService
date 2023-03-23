@@ -20,4 +20,9 @@ public class CustomersRepository {
     public List<Customer> getAll() {
         return jdbcTemplate.query("SELECT * FROM Customer", new CustomerMapper());
     }
+
+    public Customer getById(int id) {
+        return jdbcTemplate.query("SELECT * FROM Customer WHERE id=?", new Object[]{id}, new CustomerMapper())
+                .stream().findAny().orElse(null);
+    }
 }
