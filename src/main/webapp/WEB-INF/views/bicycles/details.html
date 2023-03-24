@@ -2,25 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Bike details</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Details</title>
 </head>
 <body>
-<p th:text="${bicycle.getBrandName() + ', ' + bicycle.getModel() + ', ' + bicycle.getSerialNumber()}">VALUE</p>
+<p th:text="${bicycle.brandName + ', ' + bicycle.model + ', ' + bicycle.serialNumber}">VALUE</p>
 
-<div th:if="${customer}">
-    <span>Bike has been taken by </span> <span th:text="${customer.getFullName()}">Customer name</span>
+<div th:if="${lessee}">
+    <span>Bicycle has been rent by: </span> <span th:text="${lessee.name}">Customer Name</span>
 
-    <form th:method="PATCH" th:action="@{/bicycles/{id}/release(id=${bicycle.getId()})}">
+    <form th:method="PATCH" th:action="@{/bicycles/{id}/return(id=${bicycle.getId()})}">
         <input type="submit" value="Return bicycle"/>
     </form>
 </div>
 
 <div th:if="${customers}">
-    <span>This bicycle is free. It can be rented out to somebody</span>
-    <form th:method="PATCH" th:action="@{/bicycles/{id}/assign(id=${book.getId()})}">
-        <label for="customer">Choose customer</label>
+    <span>This bicycle is free. You can rent it to:</span>
+    <form th:method="PATCH" th:action="@{/bicycles/{id}/rent(id=${bicycle.getId()})}">
+        <label for="customer">Choose a customer</label>
         <select th:object="${customer}" th:field="*{id}" id="customer">
-            <option th:each="customer : ${customer}" th:value="${customer.getId()}" th:text="${customer.getName}">
+            <option th:each="customer : ${customers}" th:value="${customer.getId()}" th:text="${customer.name}">
             </option>
         </select>
         <input type="submit" value="Rent"/>
@@ -29,13 +30,17 @@
 
 <hr/>
 
-<form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">
-    <input type="submit" value="Edit"/>
+<form th:method="GET" th:action="@{/bicycles/{id}/update(id=${bicycle.getId()})}">
+    <input type="submit" value="Update information"/>
 </form>
 
-<form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
+<form th:method="DELETE" th:action="@{/bicycles/{id}(id=${bicycle.getId()})}">
     <input type="submit" value="Delete"/>
 </form>
+
+<br/>
+<hr/>
+<a href="/">Hello page</a>
 
 </body>
 </html>

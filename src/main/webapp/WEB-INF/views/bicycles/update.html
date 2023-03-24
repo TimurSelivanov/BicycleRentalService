@@ -17,10 +17,14 @@
     <br/>
     <label for="serialNumber">Enter serial number </label>
     <input type="text" th:field="*{serialNumber}" id="serialNumber"/>
-    <div style="color:red" th:if="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}">Serial number Error</div>
+    <div style="color:red" th:if="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}">Serial number
+        Error
+    </div>
     <br/>
     <input type="submit" value="Update"/>
 </form>
-
+<br/>
+<hr/>
+<a href="/">Hello page</a>
 </body>
 </html>

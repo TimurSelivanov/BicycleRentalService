@@ -2,9 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Customer details</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Details</title>
 </head>
 <body>
+<p th:text="${customer.name + ', ' + customer.documentNumber + ', ' + customer.phoneNumber
+              + ', ' + customer.email}">VALUE</p>
 
+<div th:if="${bicycles.isEmpty()}">
+    <p>Customer haven`t rent a bicycle yet</p>
+    <hr/>
+</div>
+
+<div th:if="${!bicycles.isEmpty()}">
+    <hr/>
+    <b>Bicycles:</b>
+    <br/>
+    <table th:each="bicycle : ${bicycles}">
+        <tr th:text="${bicycle.brandName + ', ' + bicycle.model + ', ' + bicycle.serialNumber}">book</tr>
+    </table>
+    <hr/>
+</div>
+
+<form th:method="GET" th:action="@{/customers/{id}/update(id=${customer.getId()})}">
+    <input type="submit" value="Update information"/>
+</form>
+
+<form th:method="DELETE" th:action="@{/customers/{id}(id=${customer.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+<br/>
+<hr/>
+<a href="/">Hello page</a>
 </body>
 </html>
