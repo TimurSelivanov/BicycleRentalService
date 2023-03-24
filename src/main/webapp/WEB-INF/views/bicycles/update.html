@@ -6,5 +6,21 @@
 </head>
 <body>
 
+<form th:method="PATCH" th:action="@{/bicycles/{id}(id=${bicycle.getId()})}" th:object="${bicycle}">
+    <label for="brandName">Enter brand name </label>
+    <input type="text" th:field="*{brandName}" id="brandName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('brandName')}" th:errors="*{brandName}">Brand Error</div>
+    <br/>
+    <label for="model">Enter model </label>
+    <input type="text" th:field="*{model}" id="model"/>
+    <div style="color:red" th:if="${#fields.hasErrors('model')}" th:errors="*{model}">Model Error</div>
+    <br/>
+    <label for="serialNumber">Enter serial number </label>
+    <input type="text" th:field="*{serialNumber}" id="serialNumber"/>
+    <div style="color:red" th:if="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}">Serial number Error</div>
+    <br/>
+    <input type="submit" value="Update"/>
+</form>
+
 </body>
 </html>
